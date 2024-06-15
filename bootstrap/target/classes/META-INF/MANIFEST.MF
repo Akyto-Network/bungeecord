@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Built-By: Theo
-Build-Jdk: 17.0.10
-Created-By: Maven Integration for Eclipse
-Implementation-Version: 
-Main-Class: net.md_5.bungee.Bootstrap
-Specification-Version: unknown
-

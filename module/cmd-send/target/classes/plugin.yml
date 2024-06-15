@@ -1,5 +1,5 @@
 name: cmd_send
 main: net.md_5.bungee.module.cmd.send.PluginSend
-version: ${describe}
+version: git:cmd_send:1.11-SNAPSHOT:a3fd2e9:unknown
 description: Provides the gsend command
 author: SpigotMC

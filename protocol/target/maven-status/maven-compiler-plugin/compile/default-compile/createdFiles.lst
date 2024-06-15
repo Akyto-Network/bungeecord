@@ -35,7 +35,6 @@ net\md_5\bungee\protocol\packet\EncryptionResponse.class
 net\md_5\bungee\protocol\LegacyDecoder.class
 net\md_5\bungee\protocol\packet\PlayerListHeaderFooter.class
 net\md_5\bungee\protocol\packet\ScoreboardScore.class
-net\md_5\bungee\protocol\packet\PlayerListItem$1.class
 net\md_5\bungee\protocol\packet\Respawn.class
 net\md_5\bungee\protocol\packet\ClientSettings.class
 net\md_5\bungee\protocol\packet\StatusResponse.class
@@ -49,7 +48,6 @@ net\md_5\bungee\protocol\Protocol$3.class
 net\md_5\bungee\protocol\Protocol$ProtocolMapping.class
 net\md_5\bungee\protocol\packet\Handshake.class
 net\md_5\bungee\protocol\packet\Title.class
-net\md_5\bungee\protocol\packet\Title$1.class
 net\md_5\bungee\protocol\packet\LoginSuccess.class
 net\md_5\bungee\protocol\packet\ScoreboardObjective.class
 net\md_5\bungee\protocol\PacketWrapper.class
