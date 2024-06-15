@@ -15,27 +15,21 @@
     <finalName>BungeeCord</finalName>
     <plugins>
       <plugin>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <configuration>
-          <skip>true</skip>
-        </configuration>
-      </plugin>
-      <plugin>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>2.4</version>
+        <version>3.4.1</version>
         <configuration>
           <archive>
             <manifestEntries>
               <Main-Class>net.md_5.bungee.Bootstrap</Main-Class>
               <Implementation-Version>${describe}</Implementation-Version>
-              <Specification-Version>${build.number}</Specification-Version>
+              <Specification-Version>${maven.build.timestamp}</Specification-Version>
             </manifestEntries>
           </archive>
         </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>2.1</version>
+        <version>3.5.3</version>
         <executions>
           <execution>
             <phase>package</phase>
@@ -59,6 +53,26 @@
       </plugin>
     </plugins>
   </build>
+  <profiles>
+    <profile>
+      <id>jdk-9-release</id>
+      <properties>
+        <maven.compiler.release>6</maven.compiler.release>
+      </properties>
+    </profile>
+    <profile>
+      <id>jdk-12-release</id>
+      <properties>
+        <maven.compiler.release>7</maven.compiler.release>
+      </properties>
+    </profile>
+    <profile>
+      <id>jdk-20-release</id>
+      <properties>
+        <maven.compiler.release>8</maven.compiler.release>
+      </properties>
+    </profile>
+  </profiles>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -77,48 +91,19 @@
       <artifactId>findbugs</artifactId>
       <version>3.0.0</version>
       <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>bcel-findbugs</artifactId>
-          <groupId>com.google.code.findbugs</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>annotations</artifactId>
-          <groupId>com.google.code.findbugs</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>jFormatString</artifactId>
-          <groupId>com.google.code.findbugs</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>dom4j</artifactId>
-          <groupId>dom4j</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>jaxen</artifactId>
-          <groupId>jaxen</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>asm-debug-all</artifactId>
-          <groupId>org.ow2.asm</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>commons-lang</artifactId>
-          <groupId>commons-lang</groupId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.16.12</version>
+      <version>1.18.30</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
   <properties>
+    <maven.compiler.target>1.6</maven.compiler.target>
     <maven.compiler.source>1.6</maven.compiler.source>
     <maven.build.timestamp.format>yyyyMMdd</maven.build.timestamp.format>
-    <maven.compiler.target>1.6</maven.compiler.target>
+    <maven.deploy.skip>true</maven.deploy.skip>
+    <maven.javadoc.skip>true</maven.javadoc.skip>
   </properties>
 </project>
-
