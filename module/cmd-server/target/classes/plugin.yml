@@ -1,5 +1,0 @@
-name: cmd_server
-main: net.md_5.bungee.module.cmd.server.PluginServer
-version: git:cmd_server:1.11-SNAPSHOT:a3fd2e9:unknown
-description: Provides the server command
-author: SpigotMC
