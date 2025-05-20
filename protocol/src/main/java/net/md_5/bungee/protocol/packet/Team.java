@@ -53,10 +53,6 @@ public class Team extends DefinedPacket
             if ( protocolVersion >= ProtocolConstants.MINECRAFT_1_8 )
             {
                 nameTagVisibility = readString( buf );
-                if ( protocolVersion >= ProtocolConstants.MINECRAFT_1_9 )
-                {
-                    collisionRule = readString(buf);
-                }
                 color = buf.readByte();
             }
         }
@@ -85,10 +81,6 @@ public class Team extends DefinedPacket
             if ( protocolVersion >= ProtocolConstants.MINECRAFT_1_8 )
             {
                 writeString( nameTagVisibility, buf );
-                if ( protocolVersion >= ProtocolConstants.MINECRAFT_1_9 )
-                {
-                    writeString( collisionRule, buf);
-                }
                 buf.writeByte( color );
             }
         }

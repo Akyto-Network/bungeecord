@@ -167,7 +167,7 @@ class EntityMap_1_8 extends EntityMap
                 int previous = packet.writerIndex();
                 packet.readerIndex( readerIndex );
                 packet.writerIndex( readerIndex + packetIdLength );
-                DefinedPacket.writeUUID( ( (UserConnection) player ).getPendingConnection().getOfflineId(), packet );
+                DefinedPacket.writeUUID( ( (UserConnection) player ).getPendingConnection().getUniqueId(), packet );
                 packet.writerIndex( previous );
             }
         }

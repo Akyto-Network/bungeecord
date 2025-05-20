@@ -4,9 +4,9 @@ import com.google.common.base.Charsets;
 import com.google.common.base.Preconditions;
 import com.google.gson.Gson;
 import java.math.BigInteger;
-import java.net.InetSocketAddress;
-import java.net.URLEncoder;
+import java.net.*;
 import java.security.MessageDigest;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -266,12 +266,12 @@ public class InitialHandler extends PacketHandler implements PendingConnection
         // We know FML appends \00FML\00. However, we need to also consider that other systems might
         // add their own data to the end of the string. So, we just take everything from the \0 character
         // and save it for later.
-        if ( handshake.getHost().contains( "\0" ) )
-        {
-            String[] split = handshake.getHost().split( "\0", 2 );
-            handshake.setHost( split[0] );
-            extraDataInHandshake = "\0" + split[1];
-        }
+//        if ( handshake.getHost().contains( "\0" ) )
+//        {
+//            String[] split = handshake.getHost().split( "\0", 2 );
+//            handshake.setHost( split[0] );
+//            extraDataInHandshake = "\0" + split[1];
+//        }
 
         // SRV records can end with a . depending on DNS / client.
         if ( handshake.getHost().endsWith( "." ) )
@@ -374,6 +374,27 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 
         // fire pre login event
         bungee.getPluginManager().callEvent( new PreLoginEvent( InitialHandler.this, callback ) );
+    }
+
+    private String getMachineIP() {
+        try {
+            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+            while (interfaces.hasMoreElements()) {
+                NetworkInterface iface = interfaces.nextElement();
+                if (iface.isLoopback() || !iface.isUp() || iface.isVirtual()) continue;
+
+                Enumeration<InetAddress> addresses = iface.getInetAddresses();
+                while (addresses.hasMoreElements()) {
+                    InetAddress addr = addresses.nextElement();
+                    if (!addr.isLoopbackAddress() && !addr.isAnyLocalAddress() && addr.getHostAddress().indexOf(":") == -1) {
+                        return addr.getHostAddress(); // IPv4 only
+                    }
+                }
+            }
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+        return "unknown";
     }
 
     @Override
